@@ -15,24 +15,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $assunto = trim($_POST['assunto'] ?? '');
     $mensagem = trim($_POST['mensagem'] ?? '');
 
+    
     if(empty($nome) || empty($email_user) || empty($assunto) || empty($mensagem) || !filter_var($email_user, FILTER_VALIDATE_EMAIL)){
         $mensagem_status = "Erro_Campos";
     } else{
         $mail = new PHPMailer(true);
 
         try{
-            $mail->charset = 'UTF-8';
+            $mail->CharSet = 'UTF-8';
             $mail->Encoding = 'base64';
             $mail->isSMTP();
-            $mail->host = $_ENV['MAIL_HOST'];
+            $mail->Host = $_ENV['MAIL_HOST'];
             $mail->SMTPAuth = true;
             $mail->Username = $_ENV['MAIL_USERNAME'];
             $mail->Password = $_ENV['MAIL_PASSWORD'];
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setForm($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
-            $mail->addAnddress($_ENV['MAIL_FROM']);
+            $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
+            $mail->addAddress($_ENV['MAIL_FROM']);
 
             if(filter_var($email_user, FILTER_VALIDATE_EMAIL)){
                 $mail->addReplyto($email_user, $nome);
@@ -44,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <h3>Nova mensagem:</h3>
             <p><b>Nome:</b> $nome</p>
             <p><b>Email:</b> $email_user</p>
-            <p><b>Mensagem:</b><br>" . n12br(htmlspecialchars($mensagem)) . "</p>
+            <p><b>Mensagem:</b><br>" . nl2br(htmlspecialchars($mensagem)) . "</p>
             ";
 
             $mail->AltBody = "Nome: $nome\nEmail: $email_user\nMensagem: $mensagem";
@@ -356,7 +357,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <h2>Grandes conexões geram grandes oportunidades</h2>
             <p>A Ondacom está pronta para colaborar com seus projetos de telecomunicações.</p>
             <div class="contato-imagem-wrapper">
-                <img src="assets/img/fale-com-ondacom.png" alt="Pessoa da Ondacom apontando para o celular" class="contato-personagem">
+                <img src="<?=BASE_URL?>assets/img/fale-com-ondacom.png" alt="Pessoa da Ondacom apontando para o celular" class="contato-personagem">
             </div>
         </div>
 
@@ -383,6 +384,56 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 </section>
  <?php include 'includes/footer.php'?> 
- <script src="<?= BASE_URL ?>assets/js/script.js"></script>
+ <script src="<?= BASE_URL ?>/assets/js/script.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script>
+const status = "<?= $_GET['status'] ?? '' ?>";
+if(status === "Sucesso"){
+    Swal.fire({
+        icon: "success",
+        title: "Mensagem enviada!",
+        text: "Sua mensagem foi enviada com sucesso.",
+        confirmButtonText: "Fechar",
+        confirmButtonColor: "#0d6efd"
+    }).then((result) => {
+
+        if(result.isConfirmed){
+            window.location.href = window.location.pathname + "#contato";
+        }
+
+    });
+}
+if(status === "Erro"){
+    Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "Não foi possível enviar sua mensagem.",
+        confirmButtonText: "Tentar novamente",
+        confirmButtonColor: "#dc3545"
+    }).then((result) => {
+
+        if(result.isConfirmed){
+            window.location.href = window.location.pathname + "#contato";
+        }
+
+    });
+
+}
+if(status === "Erro_Campos"){
+    Swal.fire({
+        icon: "warning",
+        title: "Campos inválidos",
+        text: "Preencha todos os campos corretamente.",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#ffc107"
+    }).then((result) => {
+
+        if(result.isConfirmed){
+            window.location.href = window.location.pathname + "#contato";
+        }
+
+    });
+}
+</script>
 </body>
 </html>

@@ -235,7 +235,7 @@ body{
         font-size: 13px;
     }
     .btn-fale{
-        padding: 10px 20px;
+        padding: 20px 30px;
         font-size: 12px;
     }
     .hero-section{
@@ -271,55 +271,67 @@ body{
 
     .header-container nav,
     .header-container .btn-fale,
-    .header-container .redes-sociais{
+    .header-container .redes-socials{
         display:none;
     }
 
-    .header-container.active{
+    .header-container.active {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
-        background: #0f4b82;
+        background: #0f4a82;
         z-index: 1000;
+        display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        padding-top: 30px;
+        padding: 20px;
+        box-sizing: border-box;
     }
 
-    .header-container.active .logo{
-        margin-bottom: 40px;
+    .header-container.active .logo {
+        width: auto;
+        margin-right: auto; 
+        margin-bottom: 20px;
     }
 
-    .header-container.active nav{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        gap:25px;
-        margin-bottom:30px;
+    .header-container.active .menu-toggle {
+        position: relative; 
+        top: auto;
+        right: auto;
+        margin-left: auto; 
+        margin-bottom: 40px; 
     }
 
-    .header-container.active nav a{
-        font-size:22px;
-        margin:0;
+    .header-container.active nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 30px;
+        width: 100%;
     }
 
-    .header-container.active .btn-fale{
-        display:block;
-        margin-bottom:30px;
+    .header-container.active nav a {
+        font-size: 22px;
+        margin: 0;
     }
 
-    .header-container.active .redes-sociais{
-        display:flex;
-        gap:25px;
+    .header-container.active .btn-fale {
+        display: block;
     }
 
-    .header-container.active .redes-sociais a{
-        font-size:1.8rem;
+    .header-container.active .redes-socials {
+        margin-top: 20px;
+        display: flex;
+        gap: 25px;
     }
 
+    .header-container.active .redes-socials a {
+        font-size: 1.8rem;
+    }
     .hero-section{
         justify-content:center;
         text-align:center;
@@ -451,7 +463,7 @@ body{
     }
 
     .quem-somos-content h3{
-        font-size:1.4rem;
+        font-size:1.0rem;
         text-align:center;
     }
 
