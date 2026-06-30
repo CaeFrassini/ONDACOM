@@ -1,6 +1,80 @@
 <?php
-require_once '../includes/settings/config.php';
+require_once '../includes/settings/config.php'; // Ajuste o caminho se necessário (ex: '../includes...')
 require_once '../vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$mensagem_status = $_GET['status'] ?? "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    // 1. Captura e limpa os campos de texto
+    $nome      = trim($_POST['nome'] ?? '');
+    $email     = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
+    $cargo     = trim($_POST['cargo'] ?? '');
+    $municipio = trim($_POST['municipio'] ?? '');
+    $uf        = trim($_POST['uf'] ?? '');
+
+    // 2. Validação básica dos campos de texto e do arquivo
+    if (empty($nome) || empty($email) || empty($cargo) || empty($municipio) || empty($uf) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $mensagem_status = "Erro_Campos";
+    } 
+    // Verifica se o arquivo do currículo foi enviado sem erros
+    elseif (!isset($_FILES['curriculo']) || $_FILES['curriculo']['error'] !== UPLOAD_ERR_OK) {
+        $mensagem_status = "Erro_Arquivo";
+    } 
+    else {
+        $mail = new PHPMailer(true);
+
+        try {
+            // 3. Configurações de Servidor (idênticas ao seu outro form)
+            $mail->CharSet = 'UTF-8';
+            $mail->Encoding = 'base64';
+            $mail->isSMTP();
+            $mail->Host = $_ENV['MAIL_HOST']; 
+            $mail->SMTPAuth = true;
+            $mail->Username = $_ENV['MAIL_USERNAME'];
+            $mail->Password = $_ENV['MAIL_PASSWORD'];
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            // 4. Remetente e Destinatário
+            $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
+            $mail->addAddress($_ENV['MAIL_FROM']); // Envia para o e-mail da própria Ondacom
+            $mail->addReplyTo($email, $nome);     // Se responder o e-mail, vai para o candidato
+
+            // 5. TRATAMENTO DO ANEXO (Pega o arquivo temporário do PHP e anexa com o nome original)
+            $arquivo_caminho = $_FILES['curriculo']['tmp_name'];
+            $arquivo_nome    = $_FILES['curriculo']['name'];
+            $mail->addAttachment($arquivo_caminho, $arquivo_nome);
+
+            // 6. Conteúdo do E-mail
+            $mail->isHTML(true);
+            $mail->Subject = "Novo Currículo Recebido: $cargo - $nome";
+            
+            $mail->Body = "
+            <h3>Novo candidato pelo Trabalhe Conosco:</h3>
+            <p><b>Nome:</b> $nome</p>
+            <p><b>Email:</b> $email</p>
+            <p><b>Cargo Desejado:</b> $cargo</p>
+            <p><b>Localidade de Interesse:</b> $municipio - $uf</p>
+            <p><i>O currículo foi anexado com sucesso a este e-mail.</i></p>
+            ";
+
+            $mail->AltBody = "Novo currículo recebido de $nome.\nCargo: $cargo\nLocalidade: $municipio-$uf\nEmail: $email";
+
+            $mail->send();
+            $mensagem_status = "Sucesso";
+        } catch (Exception $e) {
+            $mensagem_status = "Erro";
+        }
+    }
+    
+    // Redireciona de volta para a página onde está o formulário (mude para index.php se o form estiver na home)
+    header("Location: work.php?status=$mensagem_status#curriculo");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,35 +123,66 @@ require_once '../vendor/autoload.php';
         </div>
 
         <div class="work-form-card-wrapper">
-            <div class="work-curriculo-card">
-                <h2>Envie o seu currículo!</h2>
-                
-                <form action="enviar-curriculo.php" method="POST" enctype="multipart/form-data" class="form-curriculo">
-                    <div class="work-input-group">
-                        <input type="text" name="nome" placeholder="Nome e Sobrenome" required>
-                    </div>
-                    <div class="work-input-group">
-                        <input type="email" name="email" placeholder="E-mail" required>
-                    </div>
-                    <div class="work-input-group">
-                        <input type="text" name="cargo" placeholder="Cargo Desejado" required>
-                    </div>
-                    <div class="work-input-group">
-                        <input type="text" name="localidade" placeholder="Localidade de interesse (Município/UF)" required>
-                    </div>
-                    
-                    <div class="work-file-group">
-                        <label for="curriculo-file" class="btn-upload">
-                            <i class="fa-solid fa-paperclip"></i> Anexar currículo (PDF, DOC ou DOCX)
-                        </label>
-                        <input type="file" id="curriculo-file" name="curriculo" accept=".pdf,.doc,.docx" required>
-                        <span id="file-name-display"></span>
-                    </div>
-                    
-                    <button type="submit" class="btn-enviar-work">ENVIAR</button>
-                </form>
+    <div class="work-curriculo-card" id="curriculo">
+        <h2>Envie o seu currículo!</h2>
+        
+        <form action="work.php" method="POST" enctype="multipart/form-data" class="form-curriculo">
+            <div class="work-input-group">
+                <input type="text" name="nome" placeholder="Nome e Sobrenome" required>
             </div>
-        </div>
+            <div class="work-input-group">
+                <input type="email" name="email" placeholder="E-mail" required>
+            </div>
+            <div class="work-input-group">
+                <input type="text" name="cargo" placeholder="Cargo Desejado" required>
+            </div>
+            
+            <div class="work-input-group-row" style="display: flex; gap: 10px;">
+                <div class="work-input-group" style="flex: 3;">
+                    <input type="text" name="municipio" placeholder="Município de interesse" required>
+                </div>
+                <div class="work-input-group" style="flex: 1;">
+                    <select name="uf" required style="width: 100%; height: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; color: #666;">
+                        <option value="" disabled selected>UF</option>
+                        <option value="AC">AC</option>
+                        <option value="AM">AM</option>
+                        <option value="AP">AP</option>
+                        <option value="BA">BA</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MG">MG</option>
+                        <option value="MS">MS</option>
+                        <option value="MT">MT</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="PR">PR</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RO">RO</option>
+                        <option value="RS">RS</option>
+                        <option value="SC">SC</option>
+                        <option value="SE">SE</option>
+                        <option value="SP">SP</option>
+                        <option value="TO">TO</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="work-file-group">
+                <label for="curriculo-file" class="btn-upload">
+                    <i class="fa-solid fa-paperclip"></i> Anexar currículo (PDF, DOC ou DOCX)
+                </label>
+                <input type="file" id="curriculo-file" name="curriculo" accept=".pdf,.doc,.docx" required>
+                <span id="file-name-display"></span>
+            </div>
+            
+            <button type="submit" class="btn-enviar-work">ENVIAR</button>
+        </form>
+    </div>
+</div>  
 
     </div>
 </section>
@@ -107,5 +212,61 @@ require_once '../vendor/autoload.php';
 </section>
 <?php include '../includes/footer.php'?>
 <script src="<?=BASE_URL?>assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+const status = "<?= $_GET['status'] ?? '' ?>";
+if (status === "Sucesso") {
+    Swal.fire({
+        icon: "success",
+        title: "Currículo enviado!",
+        text: "Seu currículo foi recebido com sucesso. Boa sorte!",
+        confirmButtonText: "Fechar",
+        confirmButtonColor: "#0d6efd"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "work.php";
+        }
+    });
+}
+if (status === "Erro") {
+    Swal.fire({
+        icon: "error",
+        title: "Erro no envio",
+        text: "Não foi possível enviar seu currículo neste momento.",
+        confirmButtonText: "Tentar novamente",
+        confirmButtonColor: "#dc3545"
+    }).then((result) => {
+        if (result.isConfirmed) {
+           window.location.href = "work.php";
+        }
+    });
+}
+if (status === "Erro_Campos") {
+    Swal.fire({
+        icon: "warning",
+        title: "Campos incompletos",
+        text: "Por favor, preencha todos os dados corretamente.",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#ffc107"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "work.php";
+        }
+    });
+}
+if (status === "Erro_Arquivo") {
+    Swal.fire({
+        icon: "error",
+        title: "Falha no arquivo",
+        text: "Selecione um arquivo de currículo válido (PDF, DOC ou DOCX).",
+        confirmButtonText: "Entendido",
+        confirmButtonColor: "#dc3545"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "work.php";
+        }
+    });
+}
+</script>
 </body>
 </html>

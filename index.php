@@ -388,50 +388,64 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script>
 const status = "<?= $_GET['status'] ?? '' ?>";
-if(status === "Sucesso"){
+
+// 1. Sucesso no envio do currículo
+if (status === "Sucesso") {
     Swal.fire({
         icon: "success",
-        title: "Mensagem enviada!",
-        text: "Sua mensagem foi enviada com sucesso.",
+        title: "Currículo enviado!",
+        text: "Seu currículo foi recebido com sucesso. Boa sorte!",
         confirmButtonText: "Fechar",
         confirmButtonColor: "#0d6efd"
     }).then((result) => {
-
-        if(result.isConfirmed){
-            window.location.href = window.location.pathname + "#contato";
+        if (result.isConfirmed) {
+            window.location.href = "work.php";
         }
-
     });
 }
-if(status === "Erro"){
+
+// 2. Erro genérico de envio/servidor
+if (status === "Erro") {
     Swal.fire({
         icon: "error",
-        title: "Erro",
-        text: "Não foi possível enviar sua mensagem.",
+        title: "Erro no envio",
+        text: "Não foi possível enviar seu currículo neste momento.",
         confirmButtonText: "Tentar novamente",
         confirmButtonColor: "#dc3545"
     }).then((result) => {
-
-        if(result.isConfirmed){
-            window.location.href = window.location.pathname + "#contato";
+        if (result.isConfirmed) {
+            window.location.href = "work.php";
         }
-
     });
-
 }
-if(status === "Erro_Campos"){
+
+// 3. Erro na validação dos campos de texto
+if (status === "Erro_Campos") {
     Swal.fire({
         icon: "warning",
-        title: "Campos inválidos",
-        text: "Preencha todos os campos corretamente.",
+        title: "Campos incompletos",
+        text: "Por favor, preencha todos os dados corretamente.",
         confirmButtonText: "OK",
         confirmButtonColor: "#ffc107"
     }).then((result) => {
-
-        if(result.isConfirmed){
-            window.location.href = window.location.pathname + "#contato";
+        if (result.isConfirmed) {
+            window.location.href = "work.php";
         }
+    });
+}
 
+// 4. Erro específico com o upload do arquivo anexado
+if (status === "Erro_Arquivo") {
+    Swal.fire({
+        icon: "error",
+        title: "Falha no arquivo",
+        text: "Selecione um arquivo de currículo válido (PDF, DOC ou DOCX).",
+        confirmButtonText: "Entendido",
+        confirmButtonColor: "#dc3545"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "work.php";
+        }
     });
 }
 </script>
