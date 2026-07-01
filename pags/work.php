@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/settings/config.php'; // Ajuste o caminho se necessário (ex: '../includes...')
+require_once '../includes/settings/config.php';
 require_once '../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -9,18 +9,15 @@ $mensagem_status = $_GET['status'] ?? "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // 1. Captura e limpa os campos de texto
     $nome      = trim($_POST['nome'] ?? '');
     $email     = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
     $cargo     = trim($_POST['cargo'] ?? '');
     $municipio = trim($_POST['municipio'] ?? '');
     $uf        = trim($_POST['uf'] ?? '');
 
-    // 2. Validação básica dos campos de texto e do arquivo
     if (empty($nome) || empty($email) || empty($cargo) || empty($municipio) || empty($uf) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $mensagem_status = "Erro_Campos";
     } 
-    // Verifica se o arquivo do currículo foi enviado sem erros
     elseif (!isset($_FILES['curriculo']) || $_FILES['curriculo']['error'] !== UPLOAD_ERR_OK) {
         $mensagem_status = "Erro_Arquivo";
     } 
@@ -28,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail = new PHPMailer(true);
 
         try {
-            // 3. Configurações de Servidor (idênticas ao seu outro form)
             $mail->CharSet = 'UTF-8';
             $mail->Encoding = 'base64';
             $mail->isSMTP();
@@ -39,17 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            // 4. Remetente e Destinatário
-            $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
-            $mail->addAddress($_ENV['MAIL_FROM']); // Envia para o e-mail da própria Ondacom
-            $mail->addReplyTo($email, $nome);     // Se responder o e-mail, vai para o candidato
 
-            // 5. TRATAMENTO DO ANEXO (Pega o arquivo temporário do PHP e anexa com o nome original)
+            $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
+            $mail->addAddress($_ENV['MAIL_FROM']); 
+            $mail->addReplyTo($email, $nome);     
+
             $arquivo_caminho = $_FILES['curriculo']['tmp_name'];
             $arquivo_nome    = $_FILES['curriculo']['name'];
             $mail->addAttachment($arquivo_caminho, $arquivo_nome);
 
-            // 6. Conteúdo do E-mail
             $mail->isHTML(true);
             $mail->Subject = "Novo Currículo Recebido: $cargo - $nome";
             
@@ -71,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-    // Redireciona de volta para a página onde está o formulário (mude para index.php se o form estiver na home)
     header("Location: work.php?status=$mensagem_status#curriculo");
     exit;
 }
@@ -87,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fira+Code:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <title>Trabalhe conosco</title>
+  <title>Trabalhe na Ondacom</title>
 </head>
 <body>
   <?php include '../includes/header.php'?>
@@ -224,7 +217,7 @@ if (status === "Sucesso") {
         confirmButtonColor: "#0d6efd"
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "work.php";
+            window.location.href = "#curriculo";
         }
     });
 }
@@ -237,7 +230,7 @@ if (status === "Erro") {
         confirmButtonColor: "#dc3545"
     }).then((result) => {
         if (result.isConfirmed) {
-           window.location.href = "work.php";
+           window.location.href = "#curriculo";
         }
     });
 }
@@ -250,7 +243,7 @@ if (status === "Erro_Campos") {
         confirmButtonColor: "#ffc107"
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "work.php";
+            window.location.href = "#curriculo";
         }
     });
 }
@@ -263,7 +256,7 @@ if (status === "Erro_Arquivo") {
         confirmButtonColor: "#dc3545"
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "work.php";
+            window.location.href = "#curriculo";
         }
     });
 }

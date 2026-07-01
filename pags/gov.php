@@ -38,51 +38,51 @@ require_once '../vendor/autoload.php';
     
     <div class="politica-card">
         <div class="politica-icon">
-            <i class="fas fa-eye-slash"></i> </div>
+            <img src="<?=BASE_URL?>assets/img/politica-privacidade_icon.png" alt="Política de Privacidade"> </div>
         <h3>Política de Privacidade</h3>
         <a href="<?=BASE_URL?>assets/docs/politica-de-privacidade.pdf" target="_blank" class="btn-acessar-pdf">ACESSAR</a>
     </div>
 
     <div class="politica-card">
         <div class="politica-icon">
-            <i class="fas fa-lock"></i> </div>
+            <img src="<?=BASE_URL?>assets/img/protecao-de-dados_icon.png" alt="Proteção de dados"> </div>
         <h3>Governança e Proteção de Dados</h3>
-        <a href="<?=BASE_URL?>assets/docs/governanca-e-protecao-de-dados.pdf" target="_blank" class="btn-acessar-pdf">ACESSAR</a>
+        <a href="<?=BASE_URL?>assets/docs/politica-governanca-protecao-dados.pdf" target="_blank" class="btn-acessar-pdf">ACESSAR</a>
     </div>
 
     <div class="politica-card">
         <div class="politica-icon">
-            <i class="fas fa-shield-alt"></i> </div>
+            <img src="<?=BASE_URL?>assets/img/seguranca-informacao_icon.png" alt="Segurança da informação"> </div>
         <h3>Segurança da Informação</h3>
         <a href="<?=BASE_URL?>assets/docs/seguranca-da-informacao.pdf" target="_blank" class="btn-acessar-pdf">ACESSAR</a>
     </div>
 
     <div class="politica-card">
         <div class="politica-icon">
-            <i class="fas fa-balance-scale"></i> </div>
+            <img src="<?=BASE_URL?>assets/img/codigo-etica_icon.png" alt="Etica e conduta"> </div>
         <h3>Código de Ética e Conduta</h3>
         <a href="<?=BASE_URL?>assets/docs/codigo-de-etica.pdf" target="_blank" class="btn-acessar-pdf">ACESSAR</a>
     </div>
 
     <div class="politica-card">
         <div class="politica-icon">
-            <i class="fas fa-hand-holding-usd"></i> </div>
+            <img src="<?=BASE_URL?>assets/img/combate-corrupcao_icon.png" alt="Combate a corrupação"> </div>
         <h3>Combate à Corrupção</h3>
         <a href="<?=BASE_URL?>assets/docs/combate-a-corrupcao.pdf" target="_blank" class="btn-acessar-pdf">ACESSAR</a>
     </div>
 
     <div class="politica-card">
         <div class="politica-icon">
-            <i class="fas fa-hand-paper"></i> </div>
+            <img src="<?=BASE_URL?>assets/img/combate-ao-assedio_icon.png" alt="Combate ao assédio"> </div>
         <h3>Combate ao Assédio</h3>
         <a href="<?=BASE_URL?>assets/docs/combate-ao-assedio.pdf" target="_blank" class="btn-acessar-pdf">ACESSAR</a>
     </div>
 
     <div class="politica-card">
         <div class="politica-icon">
-            <i class="fas fa-leaf"></i> </div>
+            <img src="<?=BASE_URL?>assets/img/politica-sustentabilidade_icon.png" alt="Política de Sustentabilidade"> </div>
         <h3>Política de Sustentabilidade</h3>
-        <a href="<?=BASE_URL?>assets/docs/politica-de-sustentabilidade.pdf" target="_blank" class="btn-acessar-pdf">ACESSAR</a>
+        <a href="<?=BASE_URL?>assets/docs/politica-sustentabilidade.pdf" target="_blank" class="btn-acessar-pdf">ACESSAR</a>
     </div>
 
 </div>

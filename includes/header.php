@@ -11,8 +11,8 @@
         <a href="<?= BASE_URL ?>#quemsomos">QUEM SOMOS</a>
         <a href="<?= BASE_URL ?>#solucoes">SOLUÇÕES</a>
         <a href="<?= BASE_URL ?>#presenca">PRESENÇA</a>
-        <a href="<?= BASE_URL ?>#parceiros">REDE TELECOM</a>
-        <a href="<?= BASE_URL ?>#">CLIENTES</a>
+        <a href="<?= BASE_URL ?>#infra-section">REDE TELECOM</a>
+        <a href="<?= BASE_URL ?>#parceiros">CLIENTES</a>
     </nav>
     <button class="btn-fale">
         <a href="<?= BASE_URL ?>#contato">FALE CONOSCO</a>

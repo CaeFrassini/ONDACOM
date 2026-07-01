@@ -12,7 +12,7 @@
                 <li><a href="<?=BASE_URL?>#quemsomos">Quem Somos</a></li>
                 <li><a href="<?=BASE_URL?>#solucoes">Soluções</a></li>
                 <li><a href="<?=BASE_URL?>#presenca">Presença</a></li>
-                <li><a href="<?=BASE_URL?>#clientes">Clientes</a></li>
+                <li><a href="<?=BASE_URL?>#parceiros">Clientes</a></li>
                 <li><a href="<?=BASE_URL?>pags/gov.php">Governança</a></li>
                 <li></li>
             </ul>
@@ -47,6 +47,6 @@
     </div>
 
     <div class="footer-bottom">
-        <p>Copyright © 2026 Ondacom Serviços de Telecomunicações. - Todos os direitos reservados.</p>
+        <p>Copyright © <?= date('Y') ?> Ondacom Serviços de Telecomunicações. - Todos os direitos reservados.</p>
     </div>
 </footer>

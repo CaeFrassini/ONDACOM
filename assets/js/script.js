@@ -25,9 +25,7 @@ var limitesBrasil = [
 var map = L.map('map', {
     center: [-14.235, -51.925], 
     zoom: 4,                     
-    minZoom: 2,                  
-    maxBounds: limitesBrasil,    
-    maxBoundsViscosity: 1.0,     
+    minZoom: 2,                   
     attributionControl: false    
 });
 

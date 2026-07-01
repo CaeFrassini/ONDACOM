@@ -242,7 +242,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <img src="assets/img/ligga.jpg" alt="logo-ligga">
             </div>
             <div class="logo-item">
-                <img src="assets/img/IHS.png" alt="logo-I-Systems">
+                <img src="assets/img/ihs-logo.png" alt="logo-I-Systems">
             </div>
             <div class="logo-item">
                 <img src="assets/img/vtal.png" alt="logo-V.tal">
@@ -250,7 +250,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     </div>
 </section>
-<section class="infra-section">
+<section class="infra-section" id="infra-section">
     <div class="infra-container">
         <div class="infra-header">
             <h2>A infraestrutura por trás de cada conexão</h2>
@@ -389,7 +389,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  <script>
 const status = "<?= $_GET['status'] ?? '' ?>";
 
-// 1. Sucesso no envio do currículo
 if (status === "Sucesso") {
     Swal.fire({
         icon: "success",
@@ -399,12 +398,10 @@ if (status === "Sucesso") {
         confirmButtonColor: "#0d6efd"
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "work.php";
+            window.location.href = "#contato";
         }
     });
 }
-
-// 2. Erro genérico de envio/servidor
 if (status === "Erro") {
     Swal.fire({
         icon: "error",
@@ -414,12 +411,11 @@ if (status === "Erro") {
         confirmButtonColor: "#dc3545"
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "work.php";
+            window.location.href = "#contato";
         }
     });
 }
 
-// 3. Erro na validação dos campos de texto
 if (status === "Erro_Campos") {
     Swal.fire({
         icon: "warning",
@@ -429,12 +425,11 @@ if (status === "Erro_Campos") {
         confirmButtonColor: "#ffc107"
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "work.php";
+            window.location.href = "#contato";
         }
     });
 }
 
-// 4. Erro específico com o upload do arquivo anexado
 if (status === "Erro_Arquivo") {
     Swal.fire({
         icon: "error",
@@ -444,7 +439,7 @@ if (status === "Erro_Arquivo") {
         confirmButtonColor: "#dc3545"
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "work.php";
+            window.location.href = "#contato";
         }
     });
 }

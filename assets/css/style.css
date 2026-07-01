@@ -27,16 +27,6 @@ body{
 .header-container img{
   width: 200px;
 }
-.header-container nav a {
-    text-decoration: none;
-    color: white; 
-    margin: 0 20px;
-    font-size: 22px;
-    font-weight: bold;
-    display: inline-block;
-    transition: all color 0.3s ease;
-    position: relative;
-}
 
 .header-container nav a:hover {
     color: #00d4ff;
@@ -50,7 +40,7 @@ body{
     text-decoration: none;
     color: white !important;
     margin: 0 15px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     display: inline-block;
     transition: transform 0.3s ease, color 0.3s ease;
@@ -71,20 +61,21 @@ body{
   color:white;
   font-size: 26px;
   margin-top: 12px;
+  line-height: 50px
 }
 
 .btn-saiba-mais{
   display: inline-block;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
   text-align: center;
   background: linear-gradient(90deg, #134470, #1786bc, #1786bc) !important;
   color: white !important;
   text-decoration: none !important;
-  padding: 13px 28px;
-  margin-top:20px;
-  border-radius: 20px;
+  padding: 8px 26px;
+  margin-top:40px;
+  border-radius: 100px;
   border: none;
   cursor: pointer;
   position: relative;
@@ -96,15 +87,15 @@ body{
 
 .btn-fale{
   display: inline-block;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
   text-align: center;
   background: linear-gradient(90deg, #134470, #1786bc, #1786bc) !important;
   color: white !important;
   text-decoration: none !important;
-  padding: 13px 28px;
-  border-radius: 20px;
+  padding: 8px 26px;
+  border-radius: 100px;
   border: none;
   cursor: pointer;
   position: relative;
@@ -163,11 +154,12 @@ body{
     font-size: 26px;
     margin: 0 auto 60px;
     text-align: center;
+    max-width: 1200px;
 }
 
 .numeros-titulo h2{
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.4rem);
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 700;
     line-height: 1.4;
 }
@@ -193,7 +185,7 @@ body{
 }
 
 .numero-item p{
-    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.375rem);
     font-weight: 600;
     line-height: 1.2;
 }
@@ -369,26 +361,28 @@ body{
 }
 
 .quem-somos-header{
-    max-width:900px;
     margin:0 auto 60px;
     text-align:center;
 }
 
 .quem-somos-header h2{
     color:#134470;
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
-    line-height:1.2;
+    font-size: clamp(24px, 2.5vw, 36px);
+    line-height:1.3;
     font-weight:700;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .quem-somos-content{
-    max-width:1000px;
+    max-width:1400px;
     margin:0 auto 60px;
 }
 
 .quem-somos-content h3{
     color:#134470;
-    font-size:1.2rem;
+    font-size:24px;
     line-height:1.5;
     margin-bottom:30px;
 }
@@ -396,7 +390,7 @@ body{
 .texto-e-imagem{
     display:flex;
     align-items:flex-start;
-    gap:40px;
+    gap:60px;
 }
 
 .textos{
@@ -405,13 +399,13 @@ body{
 
 .textos p{
     color:#4a4a4a;
-    font-size:1rem;
+    font-size:24px;
     line-height:1.8;
     margin-bottom:25px;
 }
 
 .quem-somos-imagem{
-    width:350px;
+    width:544px;
     flex-shrink:0;
 }
 
@@ -421,17 +415,17 @@ body{
 }
 
 .cards-valores{
-    max-width:1000px;
+    max-width:1260px;
     margin:0 auto;
     display:flex;
-    gap:25px;
+    gap:60px;
 }
 
 .card-info{
     flex:1;
     background:#1786bc;
     color:#fff;
-    padding:25px;
+    padding:40px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -442,10 +436,12 @@ body{
 
 .card-info h3{
     margin-bottom:15px;
+    font-size: 24px;
 }
 
 .card-info p{
     line-height:1.7;
+    font-size: 20px;
 }
 
 @media(max-width:768px){
@@ -479,37 +475,37 @@ body{
 }
 
 .solucoes-header {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto 50px;
     text-align: center;
 }
 
 .solucoes-header h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 15px;
 }
 
 .solucoes-header p {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-size: 24px;
     font-weight: 400;
     line-height: 1.5;
     opacity: 0.9;
 }
 
 .solucoes-grid {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 30px;
+    gap: 60px;
 }
 
 .solucao-card {
     background: #ffffff;
     color: #113d6b; 
-    padding: 40px 30px;
-    border-radius: 4px; 
+    padding: 40px;
+    border-radius: 0px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -520,7 +516,7 @@ body{
 }
 
 .solucao-card h3 {
-    font-size: 1.15rem;
+    font-size: 24px;
     font-weight: 700;
     margin-bottom: 20px;
     line-height: 1.3;
@@ -528,7 +524,7 @@ body{
 }
 
 .solucao-card p {
-    font-size: 0.95rem;
+    font-size: 20px;
     color: #4a4a4a; 
     line-height: 1.6;
 }
@@ -566,7 +562,7 @@ body{
     margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
 }
 
 .presenca-conteudo {
@@ -574,13 +570,13 @@ body{
 }
 
 .presenca-conteudo h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 25px;
 }
 
 .presenca-conteudo p {
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-size: 24px;
     line-height: 1.6;
     margin-bottom: 40px;
     opacity: 0.95;
@@ -607,7 +603,7 @@ body{
 }
 
 .metrica-texto {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 400;
     opacity: 0.9;
 }
@@ -619,8 +615,7 @@ body{
 
 #map {
     width: 100%;
-    height: 500px;
-    border-radius: 8px;
+    height: 415px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
@@ -684,18 +679,18 @@ body{
 }
 
 .parcerias-header {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto 50px;
 }
 
 .parcerias-header h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-size: 32px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .parcerias-header p {
-    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    font-size: 24px;
     color: #4a4a4a;
     line-height: 1.6;
 }
@@ -706,7 +701,7 @@ body{
     align-items: center;
     gap: 40px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 60px;
 }
 
 .logo-item {
@@ -758,18 +753,18 @@ body{
 }
 
 .infra-header {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto 50px;
 }
 
 .infra-header h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-size: 32px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .infra-header p {
-    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    font-size: 24px;
     color: #4a4a4a;
     line-height: 1.6;
 }
@@ -831,7 +826,7 @@ body{
 
 .flip-card-front h3 {
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 20px;
     font-weight: 600;
     margin-top: 20px;
 }
@@ -887,8 +882,8 @@ body{
 }
 
 .infra-icon {
-    width: 55px;
-    height: 55px;
+    width: 96px;
+    height: 96px;
     object-fit: contain;
 }
 
@@ -930,7 +925,7 @@ body{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 60px 5% 0 5%;
+    padding: 60px 0% 0 0%;
     overflow: hidden;
 }
 
@@ -953,16 +948,18 @@ body{
 }
 
 .contato-conteudo h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-size: 36px;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 15px;
+    margin-right: 28%;
 }
 
 .contato-conteudo p {
-    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    font-size: 24px;
     color: #e0e0e0;
     margin-bottom: 30px;
+    margin-right: 6%;
 }
 
 .contato-imagem-wrapper {
@@ -987,7 +984,7 @@ body{
 .contato-card {
     background: #ffffff;
     width: 100%;
-    max-width: 500px;
+    max-width: 590px;
     border-radius: 24px;
     padding: 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -995,9 +992,10 @@ body{
 
 .contato-card h3 {
     color: #134470;
-    font-size: 1.8rem;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 25px;
+    line-height: 32px;
 }
 
 .form-ondacom {
@@ -1009,11 +1007,11 @@ body{
 .input-group input,
 .input-group textarea {
     width: 100%;
-    padding: 14px 20px;
+    padding: 12px 16px;
     border: 1.5px solid #a0aec0;
     border-radius: 30px;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 18px;
     color: #333333;
     outline: none;
     transition: border-color 0.3s ease;
@@ -1033,14 +1031,15 @@ body{
     background: linear-gradient(90deg, #134470, #1b84bd);
     color: #ffffff;
     border: none;
-    padding: 14px;
+    padding: 10px 15px;
     border-radius: 30px;
-    font-size: 1rem;
+    font-size: 18px;
     font-weight: 600;
-    letter-spacing: 1px;
     cursor: pointer;
     transition: opacity 0.3s ease, transform 0.2s ease;
     margin-top: 10px;
+    margin-right: 180px;
+    margin-left: 180px;
 }
 
 .btn-enviar:hover {
@@ -1079,16 +1078,16 @@ body{
 .site-footer {
     background-color: #0b0f19;
     color: #ffffff;
-    padding: 60px 5% 20px 5%;
+    padding: 60px 0% 20px 0%;
     font-family: 'Poppins', sans-serif;
 }
 
 .footer-container {
-    max-width: 1200px;
+    max-width: 1260px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    gap: 40px;
+    gap: 90px;
     flex-wrap: wrap;
 }
 
@@ -1098,20 +1097,20 @@ body{
 }
 
 .footer-logo {
-    max-width: 160px;
+    max-width: 210px;
     height: auto;
     margin-bottom: 20px;
 }
 
 .footer-about p {
-    font-size: 0.85rem;
+    font-size: 16px;
     line-height: 1.6;
     color: #ffffff;
     font-weight: 300;
 }
 
 .footer-col h3 {
-    font-size: 0.95rem;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.5px;
     margin-bottom: 20px;
@@ -1157,9 +1156,8 @@ body{
     text-align: center;
     padding: 10px 20px;
     border-radius: 12px;
-    font-size: 0.85rem;
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: 0.5px;
     overflow: hidden;
     transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
@@ -1206,7 +1204,7 @@ body{
 }
 
 .contact-address {
-    font-size: 0.85rem;
+    font-size: 16px;
     line-height: 1.5;
     color: #ffffff;
     margin-bottom: 15px;
@@ -1215,7 +1213,7 @@ body{
 .contact-email {
     color: #ffffff;
     text-decoration: underline;
-    font-size: 0.9rem;
+    font-size: 16px;
     font-weight: 500;
     display: inline-block;
     margin-bottom: 20px;
@@ -1232,7 +1230,7 @@ body{
 
 .redes-socials a {
     color: #ffffff;
-    font-size: 1.3rem;
+    font-size: 24px;
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
@@ -1288,7 +1286,7 @@ body{
 .work-hero-container {
     position: relative;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1260px;
     margin: 0 auto;
     padding: 0 5%;
     z-index: 3;
@@ -1298,7 +1296,7 @@ body{
     font-family: 'Poppins', sans-serif;
     font-size: clamp(2.0rem, 4.5vw, 3.5rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 50px;
     margin: 0;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
@@ -1336,6 +1334,7 @@ body{
 
 .work-form-textos {
     flex: 1;
+    margin-right: 60px;
     color: #134470; 
 }
 
@@ -1347,13 +1346,12 @@ body{
 }
 
 .work-form-textos .text-destaque {
-    font-size: 1.3rem;
+    font-size: 24px;
 }
 
 .text-carreira h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 24px;
+    line-height: 1.6;
 }
 
 .text-carreira p {
@@ -1370,15 +1368,16 @@ body{
 .work-curriculo-card {
     background: #ffffff;
     width: 100%;
-    max-width: 520px;
+    max-width: 600px;
     border-radius: 32px;
-    padding: 45px;
+    padding: 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .work-curriculo-card h2 {
     color: #134470;
-    font-size: 1.8rem;
+    font-size: 32px;
+    line-height: 32px;
     font-weight: 700;
     margin-bottom: 30px;
 }
@@ -1391,11 +1390,11 @@ body{
 
 .work-input-group input {
     width: 100%;
-    padding: 14px 24px;
+    padding: 12px 16px;
     border: 1.5px solid #a0aec0;
     border-radius: 30px;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 18px;
     color: #333333;
     outline: none;
     transition: border-color 0.3s ease;
@@ -1422,7 +1421,7 @@ body{
     color: #ffffff;
     padding: 14px 20px;
     border-radius: 30px;
-    font-size: 0.95rem;
+    font-size: 18px;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -1445,9 +1444,9 @@ body{
     background: linear-gradient(90deg, #134470, #1786bc, #1786bc) !important;
     color: #ffffff;
     border: none;
-    padding: 12px 35px;
+    padding: 12px 26px;
     border-radius: 30px;
-    font-size: 0.95rem;
+    font-size: 18px;
     font-weight: 700;
     cursor: pointer;
     align-self: flex-start;
@@ -1489,14 +1488,14 @@ body{
 
 .diversidade-section {
     background-color: #d1eff5; 
-    padding: 80px 5% 0 5%;
+    padding: 80px 0% 0 0%;
     font-family: 'Poppins', sans-serif;
     color: #134470; 
     overflow: hidden;
 }
 
 .diversidade-container {
-    max-width: 1200px;
+    max-width: 1260px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -1505,18 +1504,18 @@ body{
 
 .diversidade-header {
     text-align: center;
-    max-width: 800px;
+    max-width: 760px;
     margin-bottom: 50px;
 }
 
 .diversidade-header h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 15px;
 }
 
 .diversidade-header p {
-    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    font-size: 24px;
     font-weight: 400;
     line-height: 1.5;
 }
@@ -1534,7 +1533,7 @@ body{
 }
 
 .diversidade-col p {
-    font-size: 1.05rem;
+    font-size: 20px;
     line-height: 1.6;
     margin-bottom: 20px;
     font-weight: 400;
@@ -1597,9 +1596,9 @@ body{
 .gov-hero-container {
     position: relative;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1260px;
     margin: 0 auto;
-    padding: 0 5%;
+    margin-left: 10%;
     z-index: 3;
 }
 .gov-title {
@@ -1607,9 +1606,9 @@ body{
     font-family: 'Poppins', sans-serif;
     font-size: clamp(2.0rem, 4.5vw, 3.5rem);
     font-weight: 700;
-    line-height: 1.1;
-    margin: 0;
+    line-height: 50px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    margin-top: 12px;
 }
 
 @media (max-width: 768px) {
@@ -1685,13 +1684,13 @@ body{
 }
 
 .integridade-header h2 {
-    font-size: 2.2rem;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 15px;
 }
 
 .integridade-header p {
-    font-size: 1.1rem;
+    font-size: 24px;
     line-height: 1.5;
     font-weight: 400;
 }
@@ -1699,7 +1698,7 @@ body{
 .integridade-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+    gap: 40px;
     justify-content: center;
 }
 
@@ -1715,19 +1714,17 @@ body{
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
-.politica-icon {
-    font-size: 2.2rem;
-    color: #1b84bd;
-    margin-bottom: 15px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.politica-icon img {
+    max-width: 50px;     
+    max-height: 50px;    
+    width: auto;
+    height: auto;
+    object-fit: contain; 
 }
 
 .politica-card h3 {
     color: #134470;
-    font-size: 1rem;
+    font-size: 18px;
     font-weight: 700;
     line-height: 1.4;
     margin-bottom: 20px;
@@ -1742,10 +1739,10 @@ body{
     background: linear-gradient(90deg, #134470, #1786bc, #1786bc) !important;
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 18px;
     font-weight: 700;
-    letter-spacing: 0.5px;
-    padding: 8px 30px;
+    line-height: 18px;
+    padding: 8px 26px;
     border-radius: 20px;
     transition: background-color 0.2s ease, transform 0.1s ease;
     margin-top: auto;
