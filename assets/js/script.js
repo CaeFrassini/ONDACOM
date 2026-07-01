@@ -64,10 +64,10 @@ basesOndacom.forEach(base => {
         .addTo(map)
         .bindPopup(`
             <div style="font-family: 'Poppins', sans-serif; color: #333;">
-                <strong style="color: #1b84bd; font-size: 1.1rem;">Ondacom</strong><br>
+                <strong style="color: #00a6ff; font-size: 1.1rem;">Ondacom</strong><br>
                 <strong style="font-size: 0.95rem;">${base.nome}</strong><br>
                 <span style="display:block; margin: 4px 0; color: #666; font-size: 0.85rem;">${base.endereco}</span>
-                <i style="color: #1786bc; font-size: 0.85rem;">${base.info}</i>
+                <i style="color: #1751bc; font-size: 0.85rem;">${base.info}</i>
             </div>
         `);
 });

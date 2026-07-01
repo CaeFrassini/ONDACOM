@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Subject = "Novo Currículo Recebido: $cargo - $nome";
             
             $mail->Body = "
-            <h3>Novo candidato pelo Trabalhe Conosco:</h3>
+            <h3>Novo Curriculo enviado pelo Trabalhe Conosco:</h3>
             <p><b>Nome:</b> $nome</p>
             <p><b>Email:</b> $email</p>
             <p><b>Cargo Desejado:</b> $cargo</p>

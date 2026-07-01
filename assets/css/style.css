@@ -390,7 +390,7 @@ body{
 .texto-e-imagem{
     display:flex;
     align-items:flex-start;
-    gap:60px;
+    gap:80px;
 }
 
 .textos{

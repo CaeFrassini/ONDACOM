@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $mail->isHTML(true);
             $mail->Subject = "Novo contato: $assunto";
             $mail->Body="
-            <h3>Nova mensagem:</h3>
+            <h3>Nova Mensagem do Site Ondacom:</h3>
             <p><b>Nome:</b> $nome</p>
             <p><b>Email:</b> $email_user</p>
             <p><b>Mensagem:</b><br>" . nl2br(htmlspecialchars($mensagem)) . "</p>
