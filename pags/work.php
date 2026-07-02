@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="work-brand-curves"></div>
 
         <div class="work-hero-container">
-            <h1 class="work-title">Trabalhe<br>Conosco</h1>
+            <h1>Trabalhe<br>Conosco</h1>
         </div>
     </section>
 

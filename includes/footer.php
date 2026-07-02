@@ -22,7 +22,7 @@
             <h3>ATENDIMENTO</h3>
             <div class="atendimento-botoes">
                 <a href="mailto:contato@ondacom.com" class="btn-atendimento">OUVIDORIA</a>
-                <a href="https://canal.ouvidordigital.com.br/ondacom" class="btn-atendimento">CANAL DE DENÚNCIAS</a>
+                <a href="https://canal.ouvidordigital.com.br/ondacom" class="btn-atendimento" target="_blank">CANAL DE DENÚNCIAS</a>
                 <a href="<?=BASE_URL?>pags/work.php"class="btn-atendimento">TRABALHE CONOSCO</a>
             </div>
         </div>

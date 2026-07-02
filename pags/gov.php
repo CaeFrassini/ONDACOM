@@ -3,7 +3,7 @@ require_once '../includes/settings/config.php';
 require_once '../vendor/autoload.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,5 +89,6 @@ require_once '../vendor/autoload.php';
 </section>
   <?php include '../includes/footer.php'?>
 </main>
+<script src="<?=BASE_URL?>assets/js/script.js"></script>
 </body>
 </html>

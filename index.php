@@ -236,13 +236,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <img src="assets/img/vivo.png" alt="Vivo">
             </div>
             <div class="logo-item">
-                <img src="assets/img/tim.jpg" alt="logo-tim">
+                <img src="assets/img/tim.png" alt="logo-tim">
             </div>
             <div class="logo-item">
-                <img src="assets/img/ligga.jpg" alt="logo-ligga">
+                <img src="assets/img/ligga.png" alt="logo-ligga">
             </div>
             <div class="logo-item">
-                <img src="assets/img/ihs-logo.png" alt="logo-I-Systems">
+                <img src="assets/img/ihs.png" alt="logo-I-Systems">
             </div>
             <div class="logo-item">
                 <img src="assets/img/vtal.png" alt="logo-V.tal">
