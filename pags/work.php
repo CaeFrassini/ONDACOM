@@ -53,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><b>Email:</b> $email</p>
             <p><b>Cargo Desejado:</b> $cargo</p>
             <p><b>Localidade de Interesse:</b> $municipio - $uf</p>
-            <p><i>O currículo foi anexado com sucesso a este e-mail.</i></p>
             ";
 
             $mail->AltBody = "Novo currículo recebido de $nome.\nCargo: $cargo\nLocalidade: $municipio-$uf\nEmail: $email";
@@ -76,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?=BASE_URL?>assets/css/style.css">
+  <link rel="icon" type="img/png" href="<?=BASE_URL?>assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">

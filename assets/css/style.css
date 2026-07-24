@@ -286,9 +286,7 @@ body{
     }
 
     .header-container.active .logo {
-        width: auto;
-        margin-right: auto; 
-        margin-bottom: 20px;
+        display:none;
     }
 
     .header-container.active .menu-toggle {
@@ -974,7 +972,6 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 40px;
 }
 
 .contato-conteudo {
@@ -1117,11 +1114,10 @@ body{
     }
 
     .contato-personagem {
-        max-width: 280px;
-        margin: 20px auto 0 auto;
+        display:block;
+        margin: 0;
     }
 }
-
 
 .site-footer {
     background-color: #0b0f19;
@@ -1135,7 +1131,7 @@ body{
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    gap: 40px;
+    gap: 80px;
     flex-wrap: wrap;
 }
 
@@ -1316,6 +1312,22 @@ body{
         min-width: 100%;
     }
     
+    .footer-contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+    .footer-contact .contact-slogan,
+    .footer-contact .contact-address,
+    .footer-contact .contact-email{
+    text-align: center;
+}
+
+    .footer-contact .contact-email{
+    display: inline-block;
+}
     /* Centraliza o logo e os textos no mobile para um visual mais limpo */
     .footer-logo {
         display: block;
