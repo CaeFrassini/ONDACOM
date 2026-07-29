@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nome) || empty($email) || empty($cargo) || empty($municipio) || empty($uf) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $mensagem_status = "Erro_Campos";
     } 
-    elseif (!isset($_FILES['curriculo']) || $_FILES['curriculo']['error'] !== UPLOAD_ERR_OK) {
+    elseif (!isset($_FILES['curriculo']) || empty($_FILES['curriculo']['error']) !== UPLOAD_ERR_OK) {
         $mensagem_status = "Erro_Arquivo";
     } 
     else {
@@ -121,21 +121,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         <form action="work.php" method="POST" enctype="multipart/form-data" class="form-curriculo">
             <div class="work-input-group">
-                <input type="text" name="nome" placeholder="Nome e Sobrenome" required>
+                <input type="text" name="nome" placeholder="Nome e Sobrenome">
             </div>
             <div class="work-input-group">
-                <input type="email" name="email" placeholder="E-mail" required>
+                <input type="email" name="email" placeholder="E-mail">
             </div>
             <div class="work-input-group">
-                <input type="text" name="cargo" placeholder="Cargo Desejado" required>
+                <input type="text" name="cargo" placeholder="Cargo Desejado">
             </div>
             
             <div class="work-input-group-row" style="display: flex; gap: 10px;">
                 <div class="work-input-group" style="flex: 3;">
-                    <input type="text" name="municipio" placeholder="Município de interesse" required>
+                    <input type="text" name="municipio" placeholder="Município de interesse">
                 </div>
                 <div class="work-input-group" style="flex: 1;">
-                    <select name="uf" required style="width: 100%; height: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; color: #666;">
+                    <select name="uf" style="width: 100%; height: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; color: #666;">
                         <option value="" disabled selected>UF</option>
                         <option value="AC">AC</option>
                         <option value="AM">AM</option>
@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="curriculo-file" class="btn-upload">
                     <i class="fa-solid fa-paperclip"></i> Anexar currículo (PDF, DOC ou DOCX)
                 </label>
-                <input type="file" id="curriculo-file" name="curriculo" accept=".pdf,.doc,.docx" required>
+                <input type="file" id="curriculo-file" name="curriculo" accept=".pdf,.doc,.docx">
                 <span id="file-name-display"></span>
             </div>
             
