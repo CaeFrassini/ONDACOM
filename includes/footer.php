@@ -13,7 +13,6 @@
                 <li><a href="<?=BASE_URL?>#solucoes">Soluções</a></li>
                 <li><a href="<?=BASE_URL?>#presenca">Presença</a></li>
                 <li><a href="<?=BASE_URL?>#parceiros">Clientes</a></li>
-                <li><a href="<?=BASE_URL?>pags/gov.php">Governança</a></li>
                 <li></li>
             </ul>
         </div>
