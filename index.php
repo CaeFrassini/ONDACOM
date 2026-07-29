@@ -393,8 +393,8 @@ const status = "<?= $_GET['status'] ?? '' ?>";
 if (status === "Sucesso") {
     Swal.fire({
         icon: "success",
-        title: "Currículo enviado!",
-        text: "Seu currículo foi recebido com sucesso. Boa sorte!",
+        title: "Mensagem Enviada!",
+        text: "Sua mensagem foi recebida com sucesso. Obrigado!",
         confirmButtonText: "Fechar",
         confirmButtonColor: "#0d6efd"
     }).then((result) => {
@@ -407,7 +407,7 @@ if (status === "Erro") {
     Swal.fire({
         icon: "error",
         title: "Erro no envio",
-        text: "Não foi possível enviar seu currículo neste momento.",
+        text: "Não foi possível enviar sua mensagem neste momento.",
         confirmButtonText: "Tentar novamente",
         confirmButtonColor: "#dc3545"
     }).then((result) => {
@@ -424,20 +424,6 @@ if (status === "Erro_Campos") {
         text: "Por favor, preencha todos os dados corretamente.",
         confirmButtonText: "OK",
         confirmButtonColor: "#ffc107"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "#contato";
-        }
-    });
-}
-
-if (status === "Erro_Arquivo") {
-    Swal.fire({
-        icon: "error",
-        title: "Falha no arquivo",
-        text: "Selecione um arquivo de currículo válido (PDF, DOC ou DOCX).",
-        confirmButtonText: "Entendido",
-        confirmButtonColor: "#dc3545"
     }).then((result) => {
         if (result.isConfirmed) {
             window.location.href = "#contato";
