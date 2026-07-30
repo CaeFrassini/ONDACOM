@@ -209,11 +209,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             <div class="presenca-metricas">
                 <div class="metrica-item">
-                    <span class="metrica-numero">+14</span>
+                    <span class="metrica-numero">+15</span>
                     <span class="metrica-texto">estados</span>
                 </div>
                 <div class="metrica-item">
-                    <span class="metrica-numero">+25</span>
+                    <span class="metrica-numero">+35</span>
                     <span class="metrica-texto">bases</span>
                 </div>
             </div>
