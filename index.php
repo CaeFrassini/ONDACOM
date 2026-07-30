@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
 
             $mail->isHTML(true);
-            $mail->Subject = "Novo contato: $assunto";
+            $mail->Subject = "Fale conosco: $assunto";
             $mail->Body="
             <h3>Nova Mensagem do Site Ondacom:</h3>
             <p><b>Nome:</b> $nome</p>
@@ -209,7 +209,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             <div class="presenca-metricas">
                 <div class="metrica-item">
-                    <span class="metrica-numero">+15</span>
+                    <span class="metrica-numero">+18</span>
                     <span class="metrica-texto">estados</span>
                 </div>
                 <div class="metrica-item">
