@@ -17,50 +17,76 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($nome) || empty($email) || empty($cargo) || empty($municipio) || empty($uf) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $mensagem_status = "Erro_Campos";
-    } 
+    }
     elseif (!isset($_FILES['curriculo']) || $_FILES['curriculo']['error'] !== UPLOAD_ERR_OK) {
-    $mensagem_status = "Erro_Arquivo";
+        $mensagem_status = "Erro_Arquivo";
     } 
     else {
-        $mail = new PHPMailer(true);
+        $arquivo_tmp  = $_FILES['curriculo']['tmp_name'];
+        $arquivo_nome = $_FILES['curriculo']['name'];
+        $arquivo_tamanho = $_FILES['curriculo']['size'];
 
-        try {
-            $mail->CharSet = 'UTF-8';
-            $mail->Encoding = 'base64';
-            $mail->isSMTP();
-            $mail->Host = $_ENV['MAIL_HOST']; 
-            $mail->SMTPAuth = true;
-            $mail->Username = $_ENV['MAIL_USERNAME'];
-            $mail->Password = $_ENV['MAIL_PASSWORD'];
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+        $tamanho_maximo = 5 * 1024 * 1024; 
+        $extensoes_permitidas = ['pdf', 'doc', 'docx'];
+        $mimes_permitidos = [
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ];
 
+        $extensao = strtolower(pathinfo($arquivo_nome, PATHINFO_EXTENSION));
 
-            $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
-            $mail->addAddress($_ENV['MAIL_FROM']); 
-            $mail->addReplyTo($email, $nome);     
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime_type = finfo_file($finfo, $arquivo_tmp);
+        finfo_close($finfo);
 
-            $arquivo_caminho = $_FILES['curriculo']['tmp_name'];
-            $arquivo_nome    = $_FILES['curriculo']['name'];
-            $mail->addAttachment($arquivo_caminho, $arquivo_nome);
+        if ($arquivo_tamanho > $tamanho_maximo) {
+            $mensagem_status = "Erro_Tamanho"; 
+        } 
+        elseif (!in_array($extensao, $extensoes_permitidas) || !in_array($mime_type, $mimes_permitidos)) {
+            $mensagem_status = "Erro_Arquivo"; 
+        } 
+        else {
 
-            $mail->isHTML(true);
-            $mail->Subject = "Novo Currículo Recebido: $cargo - $nome";
-            
-            $mail->Body = "
-            <h3>Novo Curriculo enviado pelo Trabalhe Conosco:</h3>
-            <p><b>Nome:</b> $nome</p>
-            <p><b>Email:</b> $email</p>
-            <p><b>Cargo Desejado:</b> $cargo</p>
-            <p><b>Localidade de Interesse:</b> $municipio - $uf</p>
-            ";
+            $mail = new PHPMailer(true);
 
-            $mail->AltBody = "Novo currículo recebido de $nome.\nCargo: $cargo\nLocalidade: $municipio-$uf\nEmail: $email";
+            try {
+                $mail->CharSet = 'UTF-8';
+                $mail->Encoding = 'base64';
+                $mail->isSMTP();
+                $mail->Host = $_ENV['MAIL_HOST']; 
+                $mail->SMTPAuth = true;
+                $mail->Username = $_ENV['MAIL_USERNAME'];
+                $mail->Password = $_ENV['MAIL_PASSWORD'];
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
 
-            $mail->send();
-            $mensagem_status = "Sucesso";
-        } catch (Exception $e) {
-            $mensagem_status = "Erro";
+                $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
+                $mail->addAddress($_ENV['MAIL_FROM']); 
+                $mail->addReplyTo($email, $nome);     
+
+                // Anexa o arquivo com o nome original do usuário
+                $mail->addAttachment($arquivo_tmp, $arquivo_nome);
+
+                $mail->isHTML(true);
+                $mail->Subject = "Novo Currículo Recebido: $cargo - $nome";
+                
+                $mail->Body = "
+                <h3>Novo Currículo enviado pelo Trabalhe Conosco:</h3>
+                <p><b>Nome:</b> $nome</p>
+                <p><b>Email:</b> $email</p>
+                <p><b>Cargo Desejado:</b> $cargo</p>
+                <p><b>Localidade de Interesse:</b> $municipio - $uf</p>
+                ";
+
+                $mail->AltBody = "Novo currículo recebido de $nome.\nCargo: $cargo\nLocalidade: $municipio-$uf\nEmail: $email";
+
+                $mail->send();
+                $mensagem_status = "Sucesso";
+                
+            } catch (Exception $e) {
+                $mensagem_status = "Erro";
+            }
         }
     }
     
@@ -207,6 +233,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="<?=BASE_URL?>assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".form-curriculo");
+    const btn = document.querySelector(".btn-enviar-work");
+
+    let enviando = false;
+
+    form.addEventListener("submit", function (e) {
+
+        // Se já está enviando, impede qualquer novo envio
+        if (enviando) {
+            e.preventDefault();
+            return false;
+        }
+
+        enviando = true;
+
+        // Bloqueia o botão imediatamente
+        btn.disabled = true;
+        btn.style.pointerEvents = "none";
+        btn.textContent = "ENVIANDO...";
+        
+        // Mantém o botão visível
+        btn.disabled = true;
+    });
+});
+
 const status = "<?= $_GET['status'] ?? '' ?>";
 if (status === "Sucesso") {
     Swal.fire({
@@ -241,6 +293,20 @@ if (status === "Erro_Campos") {
         text: "Por favor, preencha todos os dados corretamente.",
         confirmButtonText: "OK",
         confirmButtonColor: "#ffc107"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "#curriculo";
+        }
+    });
+}
+
+if (status === "Erro_Tamanho") {
+    Swal.fire({
+        icon: "error",
+        title: "Falha no arquivo",
+        text: "Anexe um arquivo menor que 5MB.",
+        confirmButtonText: "Entendido",
+        confirmButtonColor: "#dc3545"
     }).then((result) => {
         if (result.isConfirmed) {
             window.location.href = "#curriculo";
