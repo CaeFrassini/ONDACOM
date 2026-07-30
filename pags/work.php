@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nome) || empty($email) || empty($cargo) || empty($municipio) || empty($uf) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $mensagem_status = "Erro_Campos";
     } 
-    elseif (!isset($_FILES['curriculo']) || empty($_FILES['curriculo']['error']) !== UPLOAD_ERR_OK) {
-        $mensagem_status = "Erro_Arquivo";
+    elseif (!isset($_FILES['curriculo']) || $_FILES['curriculo']['error'] !== UPLOAD_ERR_OK) {
+    $mensagem_status = "Erro_Arquivo";
     } 
     else {
         $mail = new PHPMailer(true);
