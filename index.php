@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $mail->Port = 587;
 
             $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
-            $mail->addAddress($_ENV['MAIL_FROM']);
+            $mail->addAddress($_ENV['MAIL_FALE_CONOSCO'], 'Ondacom - Fale Conosco');
 
             if(filter_var($email_user, FILTER_VALIDATE_EMAIL)){
                 $mail->addReplyto($email_user, $nome);
@@ -388,6 +388,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  <script src="<?= BASE_URL ?>/assets/js/script.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".form-ondacom");
+    const btn = document.querySelector(".btn-enviar");
+
+    let enviando = false;
+
+    form.addEventListener("submit", function (e) {
+
+        // Se já está enviando, impede qualquer novo envio
+        if (enviando) {
+            e.preventDefault();
+            return false;
+        }
+
+        enviando = true;
+
+        // Bloqueia o botão imediatamente
+        btn.disabled = true;
+        btn.style.pointerEvents = "none";
+        btn.textContent = "ENVIANDO...";
+        
+        // Mantém o botão visível
+        btn.disabled = true;
+    });
+});
 const status = "<?= $_GET['status'] ?? '' ?>";
 
 if (status === "Sucesso") {
