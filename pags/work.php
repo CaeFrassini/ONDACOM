@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->Port = 587;
 
                 $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
-                $mail->addAddress($_ENV['MAIL_FROM']); 
+                $mail->addAddress($_ENV['MAIL_TRABALHE_CONOSCO'], 'Ondacom - Trabalhe Conosco'); 
                 $mail->addReplyTo($email, $nome);     
 
                 // Anexa o arquivo com o nome original do usuário
