@@ -9,13 +9,13 @@ $mensagem_status = $_GET['status'] ?? "";
 $mensagem_texto = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
+
     $nome = trim($_POST['nome'] ?? '');
     $email_user = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
     $assunto = trim($_POST['assunto'] ?? '');
     $mensagem = trim($_POST['mensagem'] ?? '');
 
-    
+
     if(empty($nome) || empty($email_user) || empty($assunto) || empty($mensagem) || !filter_var($email_user, FILTER_VALIDATE_EMAIL)){
         $mensagem_status = "Erro_Campos";
     } else{
@@ -76,11 +76,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fira+Code:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dotenv@17.4.2/lib/main.min.js"></script>
   <title>Ondacom</title>
 </head>
 <body>
-  <?php include 'includes/header.php'?> 
-  
+  <?php include 'includes/header.php'?>
+
   <main class="hero-section">
     <div class="hero-content">
       <h1>Criando<br>Conectividade<br>com pessoas e<br>negócios</h1>
@@ -206,7 +207,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="presenca-conteudo">
             <h2>Presença Estratégica</h2>
             <p>A capilaridade nacional da Ondacom garante agilidade no atendimento das demandas diárias e suporte eficiente às operações.</p>
-            
+
             <div class="presenca-metricas">
                 <div class="metrica-item">
                     <span class="metrica-numero">+18</span>
@@ -231,7 +232,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <h2>Parcerias que ampliam a conectividade</h2>
             <p>A Ondacom conta com a confiança de grandes operadoras, provedores de infraestrutura e conectividade digital, participando de projetos de Telecom com soluções inteligentes e inovadoras.</p>
         </div>
-        
+
         <div class="parcerias-logos">
             <div class="logo-item">
                 <img src="assets/img/vivo.png" alt="Vivo">
@@ -384,7 +385,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     </div>
 </section>
- <?php include 'includes/footer.php'?> 
+ <?php include 'includes/footer.php'?>
+ <script>
+    const token= "<?= $_ENV['API_TOKEN_MAP']?>"
+ </script>
  <script src="<?= BASE_URL ?>/assets/js/script.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script>
@@ -396,7 +400,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     form.addEventListener("submit", function (e) {
 
-        // Se já está enviando, impede qualquer novo envio
         if (enviando) {
             e.preventDefault();
             return false;
@@ -404,11 +407,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         enviando = true;
 
-        // Bloqueia o botão imediatamente
         btn.disabled = true;
         btn.style.pointerEvents = "none";
         btn.textContent = "ENVIANDO...";
-        
+
         // Mantém o botão visível
         btn.disabled = true;
     });
