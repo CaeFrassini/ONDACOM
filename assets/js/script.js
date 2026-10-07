@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         attributionControl: false
     });
 
-    L.tileLayer(`https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png=?${token}`, {
+    L.tileLayer(`https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${token}`, {
         subdomains: 'abcd',
         maxZoom: 20
     }).addTo(map);
